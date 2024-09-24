@@ -28,7 +28,7 @@ class _Home_pageState extends State<Home_page> {
     return SafeArea(
       child: Scaffold(
         body: BlocBuilder<News, News_State>(builder: (context, state) {
-          News s = BlocProvider.of(context);      
+   
           if (state is isloaded) {
             return CustomScrollView(
               slivers: [
@@ -41,21 +41,21 @@ class _Home_pageState extends State<Home_page> {
                 const SliverToBoxAdapter(child: View_items()),
                 SliverList.builder(
                   itemBuilder: (context, i) {
-                    secondurl = ((s.article[i].url == null)
+                    secondurl = ((state.art[i].url == null)
                         ? "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id1138179183?k=6&m=1138179183&s=612x612&w=0&h=prMYPP9mLRNpTp3XIykjeJJ8oCZRhb2iez6vKs8a8eE="
-                        : s.article[i].url)!;
-                    secondcap = ((s.article[i].caption == null)
+                        : state.art[i].url)!;
+                    secondcap = ((state.art[i].caption == null)
                         ? "Sorry , There is no description"
-                        : s.article[i].caption)!;
-                    secondtitle = ((s.article[i].title == null)
+                        : state.art[i].caption)!;
+                    secondtitle = ((state.art[i].title == null)
                         ? "Sorry , There is no title"
-                        : s.article[i].title)!;
+                        : state.art[i].title)!;
                     return ListView_details(
                         url: secondurl,
                         title: secondtitle,
                         description: secondcap);
                   },
-                  itemCount: s.article.length,
+                  itemCount: state.art.length,
                 )
               ],
             );

@@ -30,7 +30,7 @@ class _ScreenForcategoryState extends State<ScreenForcategory> {
     return SafeArea(
       child: Scaffold(
         body: BlocBuilder<News, News_State>(builder: (context, state) {
-          News s = BlocProvider.of(context);
+
           if (state is isloaded) {
             return Column(
               children: [
@@ -42,21 +42,21 @@ class _ScreenForcategoryState extends State<ScreenForcategory> {
                 Expanded(
                   child: ListView.builder(
                     itemBuilder: (context, x) {
-                      secondurl = ((s.article[x].url == null)
+                      secondurl = ((state.art[x].url == null)
                           ? "https://media.istockphoto.com/vectors/no-image-available-sign-vector-id1138179183?k=6&m=1138179183&s=612x612&w=0&h=prMYPP9mLRNpTp3XIykjeJJ8oCZRhb2iez6vKs8a8eE="
-                          : s.article[x].url)!;
-                      secondcap = ((s.article[x].caption == null)
+                          : state.art[x].url)!;
+                      secondcap = ((state.art[x].caption == null)
                           ? "Sorry , There is no description"
-                          : s.article[x].caption)!;
-                      secondtitle = ((s.article[x].title == null)
+                          : state.art[x].caption)!;
+                      secondtitle = ((state.art[x].title == null)
                           ? "Sorry , There is no title"
-                          : s.article[x].title)!;
+                          : state.art[x].title)!;
                       return ListView_details(
                           url: secondurl,
                           title: secondtitle,
                           description: secondcap);
                     },
-                    itemCount: s.article.length,
+                    itemCount: state.art.length,
                   ),
                 )
               ],
